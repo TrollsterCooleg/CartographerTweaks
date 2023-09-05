@@ -1,0 +1,8 @@
+{
+  "name": "CartographerTweaks",
+  "main": "me.cooleg.cartographertweaks.CartographerTweaks",
+  "description": "Makes a setting on maps to enable toggling rotation by right clicking.",
+  "version": "${version}",
+  "author": "Cooleg",
+  "website": "cooleg.me"
+}
