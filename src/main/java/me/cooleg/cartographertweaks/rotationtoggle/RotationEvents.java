@@ -1,4 +1,4 @@
-package me.cooleg.cartographertweaks;
+package me.cooleg.cartographertweaks.rotationtoggle;
 
 import io.github.bananapuncher714.cartographer.core.Cartographer;
 import io.github.bananapuncher714.cartographer.core.api.BooleanOption;
@@ -13,12 +13,12 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
 
-public class CartographerEvents implements Listener {
+public class RotationEvents implements Listener {
 
     private final SettingStateBoolean toggleSetting;
     private final Cartographer cartographer;
 
-    public CartographerEvents(SettingStateBoolean toggleSetting, Cartographer cartographer) {
+    public RotationEvents(Cartographer cartographer, SettingStateBoolean toggleSetting) {
         this.toggleSetting = toggleSetting;
         this.cartographer = cartographer;
     }
