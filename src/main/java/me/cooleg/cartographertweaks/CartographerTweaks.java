@@ -21,7 +21,7 @@ public class CartographerTweaks extends Module {
         Cartographer cartographer = getCartographer();
         registerSettings();
 
-        register = new ProviderRegister(cartographer);
+        registerListener(register = new ProviderRegister(cartographer));
         register.registerProvider(new TeammateMarkerProvider(cartographer, teammateMarkers));
         register.registerProvider(new BorderMarkerProvider(cartographer, borderMarkers));
 
