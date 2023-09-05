@@ -6,6 +6,7 @@ import io.github.bananapuncher714.cartographer.core.api.map.WorldCursorProvider;
 import io.github.bananapuncher714.cartographer.core.api.setting.SettingStateBoolean;
 import io.github.bananapuncher714.cartographer.core.map.Minimap;
 import io.github.bananapuncher714.cartographer.core.renderer.PlayerSetting;
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapCursor;
@@ -32,13 +33,13 @@ public class TeammateMarkerProvider implements WorldCursorProvider {
 
         HashSet<WorldCursor> cursors = new HashSet<>();
 
-        for (OfflinePlayer teammate : team.getPlayers()) {
+        for (String name : team.getEntries()) {
+            Player teammate = Bukkit.getPlayerExact(name);
+            if (teammate == null) {continue;}
             if (teammate.getUniqueId().equals(player.getUniqueId())) {continue;}
-            if (!teammate.isOnline()) {continue;}
-            Player other = teammate.getPlayer();
-            if (other.getScoreboardTags().contains("dead")) {continue;}
-            if (other.getWorld() != player.getWorld()) {continue;}
-            cursors.add(new WorldCursor(other.getLocation(), MapCursor.Type.BLUE_POINTER));
+            if (teammate.getScoreboardTags().contains("dead")) {continue;}
+            if (teammate.getWorld() != player.getWorld()) {continue;}
+            cursors.add(new WorldCursor(teammate.getLocation(), MapCursor.Type.BLUE_POINTER));
         }
         return cursors;
     }
