@@ -43,13 +43,15 @@ public class BorderMarkerProvider implements WorldCursorProvider {
         int z1 = (int) (borderZ+radius);
         int z2 = (int) (borderZ-radius);
 
-        HashSet<WorldCursor> cursors = new HashSet<>();
-        boolean seeX1 = Math.abs(playerX-x1)<64;
-        boolean seeX2 = Math.abs(playerX-x2)<64;
-        boolean seeZ1 = Math.abs(playerZ-z1)<64;
-        boolean seeZ2 = Math.abs(playerZ-z2)<64;
+        int distance = (int) (64 * playerSetting.getScale());
 
-        for (int x = playerX-64; x<=playerX+64; x++) {
+        HashSet<WorldCursor> cursors = new HashSet<>();
+        boolean seeX1 = Math.abs(playerX-x1)<distance;
+        boolean seeX2 = Math.abs(playerX-x2)<distance;
+        boolean seeZ1 = Math.abs(playerZ-z1)<distance;
+        boolean seeZ2 = Math.abs(playerZ-z2)<distance;
+
+        for (int x = playerX-distance; x<=playerX+distance; x++) {
             if (x % DISTANCE != 0) {continue;}
             if (x > x1 || x < x2) {continue;}
             if (seeZ1) {
@@ -60,7 +62,7 @@ public class BorderMarkerProvider implements WorldCursorProvider {
             }
         }
 
-        for (int z = playerZ-64; z<=playerZ+64; z++) {
+        for (int z = playerZ-distance; z<=playerZ+distance; z++) {
             if (z % DISTANCE != 0) {continue;}
             if (z > z1 || z < z2) {continue;}
             if (seeX1) {
